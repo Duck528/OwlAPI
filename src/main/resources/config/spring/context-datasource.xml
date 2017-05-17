@@ -14,4 +14,8 @@
     <bean id="userDao" class="com.duck.owlapi.dao.UserDao">
     	<property name="namespace" value="com.duck.owlcctv.mapper.UserMapper"/>
     </bean>
+    
+    <bean id="userCctvDao" class="com.duck.owlapi.dao.UserCctvDao">
+    	<property name="namespace" value="com.duck.owlcctv.mapper.UserCctvMapper"/>
+    </bean>
 </beans>

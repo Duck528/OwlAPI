@@ -6,7 +6,7 @@ public class UserCctv {
 	private String description;
 	private String location;
 	private String registerDate;
-	private String authCode;
+	private int authCode;
 	
 	public int getId() {
 		return id;
@@ -38,10 +38,10 @@ public class UserCctv {
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}
-	public String getAuthCode() {
+	public int getAuthCode() {
 		return authCode;
 	}
-	public void setAuthCode(String authCode) {
+	public void setAuthCode(int authCode) {
 		this.authCode = authCode;
 	}
 }

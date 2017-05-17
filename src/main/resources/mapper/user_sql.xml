@@ -21,4 +21,16 @@
 		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess  
 		from user;
 	</select>
+	
+	<select id="selectCctvListByEmail" resultType="com.duck.owlapi.vo.UserCctv">
+		select c.id, c.userId, c.description, c.location, c.registerDate, c.authCode 
+		from usercctv c, user u  
+		where c.userId = u.id and u.email=#{email}
+	</select>
+	
+	<select id="selectCctvListByUserId" resultType="com.duck.owlapi.vo.UserCctv">
+		select c.id, c.userId, c.description, c.location, c.registerDate, c.authCode 
+		from usercctv c, user u  
+		where c.userId = u.id and c.id=#{id}
+	</select>
 </mapper>

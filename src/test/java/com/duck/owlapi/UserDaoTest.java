@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.duck.owlapi.dao.UserDao;
 import com.duck.owlapi.vo.User;
+import com.duck.owlapi.vo.UserCctv;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,11 +43,22 @@ public class UserDaoTest {
 		System.out.println(u.getEmail());
 	}
 	
-	@Test
 	public void selectList() {
 		List<User> userList = userDao.selectList();
 		for (User u : userList) {
 			System.out.println(u.getEmail());
+		}
+	}
+	
+	public void selectUserCctvList() {
+		List<UserCctv> cctvList = userDao.selectUserCctvListByEmail("sdzaq@naver.com");
+		for (UserCctv c : cctvList) {
+			System.out.println(c.getAuthCode());
+		}
+		
+		List<UserCctv> cctvList2 = userDao.selectUserCctvListByUserId(9512);
+		for (UserCctv c : cctvList2) {
+			System.out.println(c.getAuthCode());
 		}
 	}
 }
