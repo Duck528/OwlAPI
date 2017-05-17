@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.duck.owlcctv.mapper.UserMapper">
+	<insert id="insert" parameterType="com.duck.owlapi.vo.User">
+		insert into user(id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess) 
+		values (#{id}, #{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess});
+	</insert>
+</mapper>
