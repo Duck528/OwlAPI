@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 public abstract class BaseDaoImpl<V, P> implements IBaseDao<V, P> {
 	
 	@Inject
-	private SqlSession sqlSession;
+	protected SqlSession sqlSession;
 	
 	protected String namespace;
 	

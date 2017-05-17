@@ -6,4 +6,19 @@
 		insert into user(id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess) 
 		values (#{id}, #{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess});
 	</insert>
+	
+	<select id="selectOne" resultType="com.duck.owlapi.vo.User">
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess 
+		from user where id=#{id};
+	</select>
+	
+	<select id="selectOneByEmail" resultType="com.duck.owlapi.vo.User">
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess 
+		from user where email=#{email};
+	</select>
+	
+	<select id="selectList" resultType="com.duck.owlapi.vo.User">
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess  
+		from user;
+	</select>
 </mapper>

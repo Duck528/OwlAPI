@@ -1,5 +1,7 @@
 package com.duck.owlapi;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,6 @@ public class UserDaoTest {
 	@Autowired
 	private UserDao userDao;
 	
-	@Test
 	public void insertUser() {
 		User u = new User();
 		u.setEmail("sdzaq@naver.com");
@@ -30,5 +31,22 @@ public class UserDaoTest {
 		u.setStatusFlag(1);
 		
 		userDao.insert(u);
+	}
+	
+	public void selectByPk() {
+		User u = userDao.selectOne(123);
+	}
+	
+	public void selectByEmail() {
+		User u = userDao.selectOneByEmail("sdzaq@naver.com");
+		System.out.println(u.getEmail());
+	}
+	
+	@Test
+	public void selectList() {
+		List<User> userList = userDao.selectList();
+		for (User u : userList) {
+			System.out.println(u.getEmail());
+		}
 	}
 }

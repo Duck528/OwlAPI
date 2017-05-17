@@ -8,4 +8,12 @@ public class UserDao extends BaseDaoImpl<User, Integer> {
 	public void setNamespace(String namespace) {
 		this.namespace = namespace;
 	}
+	
+	/**
+	 * @param email: 사용자 이메일 (유니크 키)로 2개 이상의 튜플이 나오면 안 된다.
+	 * @return
+	 */
+	public User selectOneByEmail(String email) {
+		return this.sqlSession.selectOne(this.namespace + ".selectOneByEmail", email);
+	}
 }
