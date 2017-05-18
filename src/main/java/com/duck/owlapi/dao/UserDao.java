@@ -2,14 +2,17 @@ package com.duck.owlapi.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.duck.owlapi.vo.User;
 import com.duck.owlapi.vo.UserCctv;
 
-public class UserDao extends BaseDaoImpl<User, Integer> {
 
-	@Override
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
+@Repository("userDao")
+public class UserDao extends BaseDaoImpl<User, Integer> {
+	
+	public UserDao() {
+		super.namespace = "com.duck.owlcctv.mapper.UserMapper";
 	}
 	
 	/**

@@ -3,8 +3,8 @@
  
 <mapper namespace="com.duck.owlcctv.mapper.UserMapper">
 	<insert id="insert" parameterType="com.duck.owlapi.vo.User">
-		insert into user(id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess) 
-		values (#{id}, #{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess});
+		insert into user(email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess) 
+		values (#{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess});
 	</insert>
 	
 	<select id="selectOne" resultType="com.duck.owlapi.vo.User">

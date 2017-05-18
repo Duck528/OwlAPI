@@ -4,18 +4,10 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
      
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://owlcctv.mysql.database.azure.com:3306/owl"/>
         <property name="username" value="thekan@owlcctv"/>
         <property name="password" value="910528dk%%"/>
-    </bean>
-    
-    <bean id="userDao" class="com.duck.owlapi.dao.UserDao">
-    	<property name="namespace" value="com.duck.owlcctv.mapper.UserMapper"/>
-    </bean>
-    
-    <bean id="userCctvDao" class="com.duck.owlapi.dao.UserCctvDao">
-    	<property name="namespace" value="com.duck.owlcctv.mapper.UserCctvMapper"/>
     </bean>
 </beans>

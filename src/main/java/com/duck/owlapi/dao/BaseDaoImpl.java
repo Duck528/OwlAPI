@@ -2,21 +2,19 @@ package com.duck.owlapi.dao;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseDaoImpl<V, P> implements IBaseDao<V, P> {
 	
-	@Inject
+	@Autowired
 	protected SqlSession sqlSession;
 	
 	protected String namespace;
 	
-	public abstract void setNamespace(String namespace);
-
 	@Override
 	public int insert(V vo) {
+		System.out.println("base dao: " + sqlSession);
 		return this.sqlSession.insert(this.namespace + ".insert", vo);
 	}
 

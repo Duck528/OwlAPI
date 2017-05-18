@@ -14,7 +14,7 @@ import com.duck.owlapi.vo.UserCctv;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:config/spring/context-*.xml"})
+@ContextConfiguration(locations = {"classpath:config/spring/context-*.xml", "classpath:config/test/test-context.xml"})
 public class UserDaoTest {
 	
 	@Autowired
@@ -22,8 +22,7 @@ public class UserDaoTest {
 	
 	public void insertUser() {
 		User u = new User();
-		u.setEmail("sdzaq@naver.com");
-		u.setId(321);
+		u.setEmail("illsky@naver.com");
 		u.setLastAccess("2017-05-23");
 		u.setMobPhone("010-2312-3212");
 		u.setPasswordHash("312312312312");
@@ -35,11 +34,12 @@ public class UserDaoTest {
 	}
 	
 	public void selectByPk() {
-		User u = userDao.selectOne(123);
+		User u = userDao.selectOne(324);
 	}
-	
+
+	@Test
 	public void selectByEmail() {
-		User u = userDao.selectOneByEmail("sdzaq@naver.com");
+		User u = userDao.selectOneByEmail("illsky@naver.com");
 		System.out.println(u.getEmail());
 	}
 	
