@@ -45,7 +45,6 @@ public class TokenUtil {
     }
 
     public static String computeSignature(User user, long expires){
-        System.out.println("------ Compute Signature ------");
         StringBuilder signatureBuilder = new StringBuilder();
         signatureBuilder.append(user.getEmail());
         signatureBuilder.append(":");
