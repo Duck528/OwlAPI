@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.duck.owlapi.service.AuthService;
 import com.duck.owlapi.service.UserService;
 import com.duck.owlapi.util.TokenUtil;
+import com.duck.owlapi.vo.User;
 
 @RestController
 @RequestMapping("auth")
@@ -29,14 +30,11 @@ public class AuthRestController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> postAuth(@RequestBody Map<String, String> logInfo) {
-		
-		boolean isAuthed = this.authService.authUser(logInfo);
-		System.out.println(isAuthed);
+		User u = this.authService.authUser(logInfo);
 		Map<String, Object> resp = new HashMap<>();
-		if (isAuthed == true) {
-			String email = logInfo.get("email");
-			String pw = logInfo.get("pw");
-			String jwt = TokenUtil.createToken(email, pw);
+		if (u != null) {
+			String jwt = TokenUtil.createToken(u);
+			System.out.println(jwt);
 			resp.put("msg", "ok");
 			resp.put("code", 200);
 			resp.put("token", jwt);

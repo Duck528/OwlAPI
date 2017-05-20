@@ -38,7 +38,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				return super.preHandle(request, response, handler);
 			}
 		}
-		System.out.println("fail");
 		return false;
 	}
 	

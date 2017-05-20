@@ -3,12 +3,26 @@
  
 <mapper namespace="com.duck.owlcctv.mapper.UserCctvMapper">
 	<insert id="insert" parameterType="com.duck.owlapi.vo.UserCctv">
-		insert into usercctv(id, userId, description, location, registerDate, authCode) 
-		values (#{id}, #{userId}, #{description}, #{location}, #{registerDate}, #{authCode});
+		insert into usercctv(userId, description, location, registerDate, authCode) 
+		values (#{userId}, #{description}, #{location}, #{registerDate}, #{authCode});
 	</insert>
+	
+	<delete id="deleteOne">
+		delete from usercctv where id=#{id};
+	</delete>
+	
+	<select id="selectListByUserId" resultType="com.duck.owlapi.vo.UserCctv">
+		select id, userId, description, location, registerDate, authCode
+		from usercctv where userId=#{userId};
+	</select>
 	
 	<select id="selectOne" resultType="com.duck.owlapi.vo.UserCctv">
 		select id, userId, description, location, registerDate, authCode 
 		from usercctv where id=#{id};
+	</select>
+	
+	<select id="selectList" resultType="com.duck.owlapi.vo.UserCctv">
+		select id, userId, description, location, registerDate, authCode 
+		from usercctv;
 	</select>
 </mapper>

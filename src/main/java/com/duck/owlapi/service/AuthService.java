@@ -17,16 +17,20 @@ public class AuthService {
 	@Resource(name="userDao")
 	private UserDao userDao;
 	
-	public boolean authUser(Map<String, String> logInfo) {
+	public User authUser(Map<String, String> logInfo) {
 		String email = logInfo.get("email");
 		String pw = logInfo.get("password");
 		
+		return this.authUser(email, pw);
+	}
+	
+	public User authUser(String email, String pw) {
 		if (email != null && pw != null) {
 			User u = this.userDao.selectOneByEmail(email);
 			if (u != null && pw.equals(u.getPasswordHash())) {
-				return true;	
+				return u;	
 			}
 		}
-		return false;
+		return null;
 	}
 }

@@ -19,10 +19,9 @@ public class TokenUtilTest {
 	@Autowired
 	private UserDao userDao;
 	
-	@Test
 	public void createAndValidateToken() throws InterruptedException {
 		
-		String email = "asa9105@naver.com";
+		String email = "sdzaq@naver.com";
 		User u = this.userDao.selectOneByEmail(email);
 		if (u != null) {
 			String token = TokenUtil.createToken(u);
@@ -33,5 +32,16 @@ public class TokenUtilTest {
 			boolean isValidated = TokenUtil.validateToken(token, u);
 			System.out.println(isValidated);
 		}
+	}
+	
+	@Test
+	public void validateToken() {
+		//String token = "sdzaq@naver.com:1526832894620:79f8af9db7404e7b98090e75c50e757b";
+		//String token = "sdzaq@naver.com:1526833063251:b809eed0532bd041712d9ea5c4fd4cd6";
+		String token = "sdzaq@naver.com:1526833891376:b79c3879c68bb7956705daa71ca60152";
+		User u = this.userDao.selectOneByEmail("sdzaq@naver.com");
+		
+		boolean isValid = TokenUtil.validateToken(token, u);
+		System.out.println(isValid);
 	}
 }

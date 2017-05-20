@@ -63,6 +63,14 @@ public class TokenUtil {
         return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));
     }
     
+    /**
+     * @param email
+     * @param pw
+     * @param expires
+     * @return
+     * 
+     * 오류가 있다. 해결할 때 까지 사용하지 말 것
+     */
     public static String computeSignature(String email, String pw, long expires){
         StringBuilder signatureBuilder = new StringBuilder();
         signatureBuilder.append(email);
@@ -101,6 +109,11 @@ public class TokenUtil {
         if (expires < System.currentTimeMillis()) {
             return false;
         }
-        return signature.equals(TokenUtil.computeSignature(user, expires));
+        String t1 = TokenUtil.computeSignature(user, expires);
+        System.out.println("sign: " + t1);
+        System.out.println("sign: " + signature);
+        boolean isValid = signature.equals(TokenUtil.computeSignature(user, expires));
+        System.out.println("is valid: " + isValid);
+        return isValid;
     }
 }
