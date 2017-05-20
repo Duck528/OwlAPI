@@ -17,8 +17,8 @@ public class TokenUtil {
 	public static final String MAGIC_KEY = "obfuscate";
 
     public static String createToken(User user){
-        /* Expires in one hour */
-        long expires = System.currentTimeMillis() + 1000L * 60 * 60;
+        /* Expires in one year */
+        long expires = System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 365;
 
         StringBuilder tokenBuilder = new StringBuilder();
         tokenBuilder.append(user.getEmail());
@@ -31,8 +31,8 @@ public class TokenUtil {
     }
     
     public static String createToken(String email, String pw){
-        /* Expires in one hour */
-        long expires = System.currentTimeMillis() + 1000L * 60 * 60;
+        /* Expires in one year */
+        long expires = System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 365;
 
         StringBuilder tokenBuilder = new StringBuilder();
         tokenBuilder.append(email);
@@ -64,7 +64,6 @@ public class TokenUtil {
     }
     
     public static String computeSignature(String email, String pw, long expires){
-        System.out.println("------ Compute Signature ------");
         StringBuilder signatureBuilder = new StringBuilder();
         signatureBuilder.append(email);
         signatureBuilder.append(":");
@@ -80,6 +79,7 @@ public class TokenUtil {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("No MD5 algorithm available!");
         }
+        
         return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));
     }
 

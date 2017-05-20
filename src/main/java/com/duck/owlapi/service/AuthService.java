@@ -23,8 +23,9 @@ public class AuthService {
 		
 		if (email != null && pw != null) {
 			User u = this.userDao.selectOneByEmail(email);
-			if (pw.equals(u.getPasswordHash()))
-				return true;
+			if (u != null && pw.equals(u.getPasswordHash())) {
+				return true;	
+			}
 		}
 		return false;
 	}

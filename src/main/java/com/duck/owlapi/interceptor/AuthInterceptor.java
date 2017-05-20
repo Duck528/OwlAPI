@@ -32,12 +32,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String authToken = this.extractAuthToken(request);
 		String email = TokenUtil.getEmailFromToken(authToken);
 		if (email != null) {
-			User u = this.userService.getOneByEmail(email);
-			if (TokenUtil.validateToken(authToken, u) == true) {
+			User user = this.userService.getOneByEmail(email);
+			if (TokenUtil.validateToken(authToken, user) == true) {
+				System.out.println("validation success");
 				return super.preHandle(request, response, handler);
 			}
 		}
-		
+		System.out.println("fail");
 		return false;
 	}
 	

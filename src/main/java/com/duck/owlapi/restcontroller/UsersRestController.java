@@ -1,4 +1,4 @@
-package com.duck.owlapi.restcontroller;
+ package com.duck.owlapi.restcontroller;
 
 import java.util.HashMap;
 import java.util.Map;
