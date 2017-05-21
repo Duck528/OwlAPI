@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duck.owlcctv.mapper.UserMapper">
 	<insert id="insert" parameterType="com.duck.owlapi.vo.User">
-		insert into user(email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess) 
-		values (#{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess});
+		insert into user(email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess, storageName) 
+		values (#{email}, #{passwordSalt}, #{passwordHash}, #{registerDate}, #{mobPhone}, #{statusFlag}, #{lastAccess}, #{storageName});
 	</insert>
 	
 	<select id="selectOne" resultType="com.duck.owlapi.vo.User">
-		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess 
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess, storageName  
 		from user where id=#{id};
 	</select>
 	
 	<select id="selectOneByEmail" resultType="com.duck.owlapi.vo.User">
-		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess 
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess, storageName 
 		from user where email=#{email};
 	</select>
 	
 	<select id="selectList" resultType="com.duck.owlapi.vo.User">
-		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess  
+		select id, email, passwordSalt, passwordHash, registerDate, mobPhone, statusFlag, lastAccess, storageName
 		from user;
 	</select>
 	

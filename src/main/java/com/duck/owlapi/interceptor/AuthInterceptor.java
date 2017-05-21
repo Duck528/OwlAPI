@@ -34,7 +34,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if (email != null) {
 			User user = this.userService.getOneByEmail(email);
 			if (TokenUtil.validateToken(authToken, user) == true) {
-				System.out.println("validation success");
 				return super.preHandle(request, response, handler);
 			}
 		}
@@ -47,7 +46,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if (authToken == null) {
 			authToken = httpReq.getParameter("X-Auth Token");
 		}
-		
 		return authToken;
 	}
 	

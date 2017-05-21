@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.duck.owlapi.dao.UserDao;
+import com.duck.owlapi.util.AzureStorage;
 import com.duck.owlapi.vo.User;
 import com.duck.owlapi.vo.UserCctv;
 
@@ -46,7 +47,17 @@ public class UserService {
 		 *  0 - Deleted
 		 */
 		u.setStatusFlag(1);
-		return this.userDao.insert(u);
+		/*
+		 * Azure 컨테이너를 생성한다
+		 * 만약, 생성되지 않았다면 회원가입 로직을 수행하지 않는다
+		 */
+		String containerName = AzureStorage.getInst().generateContainer();
+		if (containerName != null) {
+			u.setStorageName(containerName);
+			return this.userDao.insert(u);
+		} else {
+			return -1;
+		}
 	}
 	
 	public int updateOne(User user) {

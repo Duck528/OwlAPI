@@ -9,6 +9,7 @@ public class User {
 	private String mobPhone;
 	private int statusFlag;
 	private String lastAccess;
+	private String storageName;
 	
 	public int getId() {
 		return id;
@@ -57,5 +58,11 @@ public class User {
 	}
 	public void setLastAccess(String lastAccess) {
 		this.lastAccess = lastAccess;
+	}
+	public String getStorageName() {
+		return storageName;
+	}
+	public void setStorageName(String storageName) {
+		this.storageName = storageName;
 	}
 }

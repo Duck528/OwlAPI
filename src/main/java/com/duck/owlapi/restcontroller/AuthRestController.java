@@ -31,18 +31,17 @@ public class AuthRestController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> postAuth(@RequestBody Map<String, String> logInfo) {
 		User u = this.authService.authUser(logInfo);
-		Map<String, Object> resp = new HashMap<>();
+		Map<String, Object> m = new HashMap<>();
 		if (u != null) {
 			String jwt = TokenUtil.createToken(u);
-			System.out.println(jwt);
-			resp.put("msg", "ok");
-			resp.put("code", 200);
-			resp.put("token", jwt);
-			return new ResponseEntity<Map<String,Object>>(resp, HttpStatus.OK);
+			m.put("msg", "ok");
+			m.put("code", 200);
+			m.put("token", jwt);
+			return new ResponseEntity<Map<String,Object>>(m, HttpStatus.OK);
 		} else {
-			resp.put("msg", "bad request");
-			resp.put("code", 400);
-			return new ResponseEntity<Map<String,Object>>(resp, HttpStatus.BAD_REQUEST);
+			m.put("msg", "bad request");
+			m.put("code", 400);
+			return new ResponseEntity<Map<String,Object>>(m, HttpStatus.BAD_REQUEST);
 		}
 	}
 }
