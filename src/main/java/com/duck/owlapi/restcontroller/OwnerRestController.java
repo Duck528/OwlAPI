@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.duck.owlapi.service.UserCctvService;
 import com.duck.owlapi.service.UserService;
+import com.duck.owlapi.util.AzureStorage;
 import com.duck.owlapi.vo.User;
 import com.duck.owlapi.vo.UserCctv;
 
@@ -30,6 +32,8 @@ public class OwnerRestController {
 	
 	@Resource(name="userService")
 	private UserService userService;
+	
+	private AzureStorage azureStorage = AzureStorage.getInst();
 	
 	/**
 	 * @param userEmail
@@ -108,5 +112,34 @@ public class OwnerRestController {
 			m.put("msg", "bad request");
 			return new ResponseEntity<Map<String, Object>>(m, HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value = {"/{userEmail}/uploadKeys"}, method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getUploadKey(
+			@PathVariable String userEmail, 
+			@RequestParam("file") String fileName) {
+		
+		Map<String, Object> m = new HashMap<>();
+		User u = this.userService.getOneByEmail(userEmail);
+		if (u != null) {
+			String containerName = u.getStorageName();
+			this.azureStorage.clearSharedAccessPolicy(containerName);
+			this.azureStorage.createSharedAccessPolicy(containerName, "accessPolicy");
+			String sasToken = this.azureStorage.getBlockBlobSasUriWithPolicy(
+					containerName, 
+					fileName, 
+					"accessPolicy");
+			
+			if (sasToken != null) {
+				m.put("code", 200);
+				m.put("msg", "ok");
+				m.put("accessKey", sasToken);
+				return new ResponseEntity<Map<String,Object>>(m, HttpStatus.OK);
+			}
+		}
+		
+		m.put("code", 400);
+		m.put("msg", "bad request");
+		return new ResponseEntity<Map<String,Object>>(m, HttpStatus.BAD_REQUEST);
 	}
 }
