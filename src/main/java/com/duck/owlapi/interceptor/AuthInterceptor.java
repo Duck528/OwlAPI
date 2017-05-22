@@ -23,7 +23,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		// 로그인, 회원가입은 무시한다
 		for (String ignoreUri : ignoreUriArr) {
-			if (ignoreUri.equals(request.getRequestURI())) {
+			if (ignoreUri.equalsIgnoreCase(request.getRequestURI())) {
 				return super.preHandle(request, response, handler);		
 			}
 		}
