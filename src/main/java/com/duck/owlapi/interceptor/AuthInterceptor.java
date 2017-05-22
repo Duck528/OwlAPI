@@ -12,7 +12,7 @@ import com.duck.owlapi.vo.User;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 	
-	private static final String[] ignoreUriArr = {"/owlapi/auth", "/owlapi/users"};
+	private static final String[] ignoreUriArr = {"/OwlApi/auth", "/OwlApi/users"};
 	
 	@Resource(name="userService")
 	private UserService userService;
